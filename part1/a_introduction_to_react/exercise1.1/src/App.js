@@ -3,7 +3,7 @@ import React from 'react'
 const Header = (props) => {
   return (
     <>
-      <h1>{props.course}</h1>
+      <h1>{props.name}</h1>
     </>
   )
 }
@@ -34,28 +34,31 @@ const Total = (props) => (
 )
 
 const App = () => {
-  const course = 'Half Stack application development'
-  const parts = [
-    {
-      name: 'Fundamentals of React',
-      exercises: 10
-    },
-    {
-      name: 'Using props to pass data',
-      exercises: 7
-    },
-    {
-      name: 'State of a component',
-      exercises: 14
-    }
-  ]
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7
+      },
+      {
+        name: 'State of a component',
+        exercises: 14
+      }
+    ]
+  }
 
+  const exercise_num = course.parts.reduce((partial_sum, part) => partial_sum+part.exercises, 0)
 
   return (
     <div>
-      <Header course={course}/>
-      <Content parts={parts} />
-      <Total exercise_num={parts[0].exercises + parts[1].exercises + parts[2].exercises} />
+      <Header name={course.name}/>
+      <Content parts={course.parts} />
+      <Total exercise_num={exercise_num} />
     </div>
   )
 }
